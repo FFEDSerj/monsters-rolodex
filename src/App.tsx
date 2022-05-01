@@ -11,7 +11,11 @@ const App = () => {
   const [filteredMonsters, setFilterMonsters] = useState(monsters);
 
   useEffect(() => {
-  getData<Monster[]>('https://jsonplaceholder.typicode.com/users').then((res) => setMonsters(res));
+    const fetchMonsters = async () => {
+      const monsters = await getData<Monster[]>('https://jsonplaceholder.typicode.com/users');
+      setMonsters(monsters)
+    } 
+    fetchMonsters()
   }, []);
 
   useEffect(() => {
